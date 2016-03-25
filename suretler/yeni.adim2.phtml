@@ -1,0 +1,10 @@
+<div class="well well-sm text-center adim-baslik">İlan Bilgilerini Girin</div>
+<div class="form-group">
+    <label class="control-label">İlan Başlığı:</label>
+    <span class="pull-right small" ng-bind-template="{{ilan.baslik.length}}/[10,100]"></span>
+    <input type="text" class="form-control" name="baslik"
+           ng-minlength=10 ng-maxlength=100 ng-model="ilan.baslik" required/>
+    <label class="control-label">Açıklama:</label>
+    <span class="pull-right small" ng-bind-template="{{ilan.aciklama.length}}/200"></span>
+    <textarea class="form-control" ng-maxlength=200 name="aciklama" ng-model="ilan.aciklama"></textarea>
+</div>

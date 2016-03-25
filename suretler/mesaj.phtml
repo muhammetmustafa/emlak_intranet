@@ -1,0 +1,34 @@
+<a href="benim/mesajlarim" class="breadcrumb">Mesajlarım</a>
+<h3>Mesaj İçeriği</h3>
+<div class="panel panel-info asagi_itekle">
+    <div class="panel-heading">
+        <div class="panel-title" ng-bind-template="#{{mesaj_kod}} Kodlu İstek">
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="list-group">
+            <div class="list-group-item">
+                <strong>Gönderen:</strong>
+                <a href="" class="saga_itekle" ng-href="emlakcilar/{{mesaj.mesaj_gonderen_kod}}" ng-bind="mesaj.mesaj_gonderen_ad"></a>
+            </div>
+            <div class="list-group-item">
+                <strong>Konu:</strong>
+                <span ng-bind="mesaj.konu"></span>
+            </div>
+            <div class="list-group-item">
+                <strong>Tarih:</strong>
+                <span ng-bind="mesaj.tarih"></span>
+            </div>
+            <div class="list-group-item">
+                <strong>Mesaj:</strong>
+                <div class="well well-lg asagi_itekle">
+                    <p ng-bind="mesaj.mesaj"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <input type="button" class="btn btn-primary btn-lg" value="Cevapla" ng-click="cevapla()"/>
+        <input type="button" class="btn btn-danger btn-lg" value="Sil" ng-click="mesaj_sil()"/>
+    </div>
+</div>

@@ -1,0 +1,231 @@
+<h3 ng-bind-template="{{ilan.veri.baslik | ilkHarflerBuyuk}}"></h3>
+<div class="row">
+    <div class="col-lg-9">
+        <div class="panel panel-default">
+            <div class="panel-heading arka-baslik">
+                <h4 class="panel-title">Genel Bilgiler</h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-5 text-center">
+                        <img class="img-thumbnail img-ilan-buyuk" src=""/>
+                        <div class="ilan-liste-kucukresim">
+                            <ul class="list-inline">
+                                <li><img class="img-ilan-kucuk"/></li>
+                                <li><img class="img-ilan-kucuk"/></li>
+                                <li><img class="img-ilan-kucuk"/></li>
+                                <li><img class="img-ilan-kucuk"/></li>
+                                <li><img class="img-ilan-kucuk"/></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td ng-bind-template="{{ilan.veri.tur}} {{ilan.veri.gayrimenkul_turu}}"></td>
+                                </tr>
+                                <tr>
+                                    <td ng-bind="ilan.veri.aciklama"></td>
+                                </tr>
+                                <tr>
+                                    <td ng-bind-template="{{ilan.veri.istenilen_fiyat | currency: ''}} TL"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="panel panel-default panel-kucuk" ng-if="ilan.benimmi==0">
+            <div class="panel-heading dikey-ortala">
+                <div class="panel-title">
+                    <strong class="saga_itekle" ng-bind="ilan.veri.emad"></strong>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default panel-kucuk"  ng-if="ilan.benimmi==0">
+            <div class="panel-body">
+                <div class="list-group text-center">
+                    <a href=""
+                       class="btn btn-link list-group-item"
+                       role="button"
+                       data-target="#devir"
+                       ng-if="ilan.istek==0||ilan.istek==-1"
+                       data-toggle="modal">Devralma İsteği Gönder</a>
+                    <a href=""
+                       class="btn btn-link list-group-item"
+                       ng-click="istekten_vazgec()"
+                       ng-if="ilan.istek==1">Devralma İsteğini Geri Çek</a>
+                    <a href=""
+                       class="btn btn-link list-group-item"
+                       role="button"
+                       data-target="#mesaj"
+                       data-toggle="modal">İlan Sahibine Mesaj At</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default panel-kucuk" ng-if="ilan.benimmi==1">
+            <div class="panel-heading">
+                <div class="panel-title">İşlemler</div>
+            </div>
+            <div class="panel-body">
+                <div class="text-left">
+                    <a ng-href="ilanlar/{{ilan_id}}/duzenle/" class="label label-primary">Düzenle</a>
+                    <a ng-href="" class="label label-danger" ng-click="ilani_sil()">Sil</a>
+                    <a ng-href="" class="label label-danger">Yayından Kaldır</a>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default panel-kucuk" ng-if="ilan.benimmi==1">
+            <div class="panel-heading">
+                <div class="panel-title">İlana Yapılan Devir İstekleri
+                    <span class="badge" ng-bind="istekler.length" ng-if="istekler.length"></span>
+                </div>
+            </div>
+            <div class="panel-istek">
+                <div class="btn-group-vertical text-center">
+                    <div ng-if="!istekler.length">
+                        Bu ilan için hiç devir isteği bulunmamakta!
+                    </div>
+                    <table class="table-istek" ng-if="istekler.length">
+                        <thead>
+                            <tr>
+                                <th class="td-indis text-center"><input type="checkbox"/></th>
+                                <th class="td-istek-yapan text-center">İstek Yapan</th>
+                                <th class="td-istek-tarihi text-center">Tarih</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="istek in istekler">
+                                <td><input type="checkbox"/></td>
+                                <td ng-bind="istek.istek_yapan"></td>
+                                <td ng-bind="istek.istek_tarihi"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">Gayrimenkul Özellikler</h4>
+    </div>
+    <div class="panel-body row">
+        <div class="col-lg-6 col-lg-push-3">
+            <table class="table table-hover table-bordered table-ozellik">
+                <tbody>
+                    <tr>
+                        <td class="col-lg-3">Oda Türü</td>
+                        <td class="col-lg-9" ng-bind="ilan.veri.oda_turu"></td>
+                    </tr>
+                    <tr>
+                        <td>Metrekare</td>
+                        <td ng-bind="ilan.veri.metrekare"></td>
+                    </tr>
+                    <tr>
+                        <td>Bulundugu Kat</td>
+                        <td ng-bind="ilan.veri.bulundugu_kat"></td>
+                    </tr>
+                    <tr>
+                        <td>Kaç Yıllık</td>
+                        <td ng-bind="ilan.veri.kac_yillik"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">Adres/İletişim Bilgileri</h4>
+    </div>
+    <div class="panel-body row">
+        <div class="col-lg-6 col-lg-push-3">
+            <table class="table table-hover table-bordered table-ozellik">
+                <tbody>
+                    <tr>
+                        <td class="col-lg-3">İl</td>
+                        <td class="col-lg-9" ng-bind="ilan.veri.il"></td>
+                    </tr>
+                    <tr>
+                        <td>İlçe</td>
+                        <td ng-bind="ilan.veri.ilce"></td>
+                    </tr>
+                    <tr>
+                        <td>Semt</td>
+                        <td ng-bind="ilan.veri.semt"></td>
+                    </tr>
+                    <tr>
+                        <td>Mahalle</td>
+                        <td ng-bind="ilan.veri.mahalle"></td>
+                    </tr>
+                    <tr>
+                        <td>Adres</td>
+                        <td ng-bind="ilan.veri.adres"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="devir" role="modal" tabindex="-1" ng-if="ilan.benimmi==0||ilan.istek==0||ilan.istek==-1">
+    <div class="modal-dialog modal-content">
+        <div class="modal-header">
+            <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Devralma İsteği Gönder</h3>
+        </div>
+        <form name="form_istek" class="form-group" novalidate>
+            <div class="modal-body">
+                <label>Ek</label>
+                <textarea class="form-control"
+                          ng-model="istek.ek"
+                          ng-maxlength="200"></textarea>
+                <div ng-bind-template="({{istek.ek.length}}/200)"></div>
+            </div>
+            <div class="modal-footer" data-dismiss="modal" aria-hidden="true">
+                <a href="" class="btn">Vazgeç</a>
+                <a href=""
+                   class="btn btn-success"
+                   ng-disabled="form_istek.$invalid"
+                   ng-click="istek_gonder()">Gönder</a>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="mesaj" role="modal" tabindex="-1" ng-if="ilan.benimmi==0">
+    <div class="modal-dialog modal-content">
+        <div class="modal-header">
+            <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Mesaj Gönder</h3>
+        </div>
+        <form name="form_mesaj" class="form-horizontal" novalidate>
+            <div class="modal-body">
+                <label>Konu</label>
+                <input type="text"
+                       class="form-control"
+                       name="konu"
+                       ng-model="mesaj.konu"
+                       ng-minlength=5
+                       ng-maxlength=100
+                       required/>
+                <label>Mesaj</label>
+                <textarea class="form-control"
+                          ng-model="mesaj.mesaj"
+                          ng-maxlength="250" required></textarea>
+                <div ng-bind-template="({{mesaj.mesaj.length}}/250)"></div>
+            </div>
+            <div class="modal-footer" data-dismiss="modal" aria-hidden="true">
+                <a href="" class="btn">Vazgeç</a>
+                <a href=""
+                   class="btn btn-success"
+                   ng-disabled="form_mesaj.$invalid"
+                   ng-click="mesaj_gonder()">Gönder</a>
+            </div>
+        </form>
+    </div>
+</div>

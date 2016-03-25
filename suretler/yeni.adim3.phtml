@@ -1,0 +1,22 @@
+<div class="well well-sm text-center adim-baslik">Gayrimenkul Nitelikleri</div>
+<div class="ilan-form-satir">
+	<?php
+		Mysql::sql($emlaknet)
+		->select()->from('form_gayrimenkul_nitelikler')->calistir();
+
+		$form = $emlaknet->sonuc(true)->alMesaj();
+		
+		foreach ($form as $nitelik):
+	?>
+    <div class="ilan-form-alan text-left">
+        <label class="form-control-static"><?php echo $nitelik["label"]?>:</label>
+        <input type="<?php echo $nitelik["type"];?>" class="<?php echo $nitelik["class"];?>" 
+        		name="<?php echo $nitelik["name"];?>" ng-model="<?php echo $nitelik["ngmodel"];?>" 
+        		<?php echo isset($nitelik["min_value"]) ? 'min='.$nitelik["min_value"] : '';?>
+        		<?php echo isset($nitelik["max_value"]) ? 'max='.$nitelik["max_value"] : '';?>
+        		<?php echo isset($nitelik["min_char"]) ? 'min_length='.$nitelik["min_char"] : '';?>
+        		<?php echo isset($nitelik["max_char"]) ? 'max_length='.$nitelik["max_char"] : '';?>
+        		<?php echo $nitelik["gerekli"] ? 'required' : '';?>/>
+    </div>
+    <?php endforeach; ?>
+</div>

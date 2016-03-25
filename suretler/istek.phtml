@@ -1,0 +1,43 @@
+<h3>İstek Detayları</h3>
+<div class="panel panel-info asagi_itekle" ng-hide="istek.istekCevapDurum">
+    <div class="panel-heading">
+        <div class="panel-title" ng-bind-template="#{{istek_kod}} Kodlu İstek">
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="list-group">
+            <div class="list-group-item">
+                <strong>İlgili İlan:</strong>
+                <a href="" class="saga_itekle" ng-href="ilanlar/{{istek.veri.ilanKod}}" ng-bind="istek.veri.ilanBaslik"></a>
+            </div>
+            <div class="list-group-item">
+                <strong>{{istek.gorunum == 'yapan' ? 'İstek Hedef' : 'İstek Yapan'}}:</strong>
+                <a href="" class="saga_itekle" ng-href="emlakcilar/{{istek.veri.emlakciKod}}" ng-bind="istek.veri.emlakciAd"></a>
+            </div>
+            <div class="list-group-item">
+                <strong>Tarih:</strong>
+                <span ng-bind="istek.veri.tarih"></span>
+            </div>
+            <div class="list-group-item">
+                <strong>Durum:</strong>
+                <span ng-bind="istek.veri.durum"></span>
+            </div>
+            <div class="list-group-item">
+                <strong>Ek Açıklama:</strong>
+                <div class="well well-lg asagi_itekle">
+                    <p ng-bind="istek.veri.ek"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer" ng-if="istek.gorunum == 'hedef' && (istek.veri.yetki == 1 || istek.veri.yetki == 3)">
+        <input type="button" class="btn btn-success btn-lg" value="Kabul Et" ng-click="cevap(1)"/>
+        <input type="button" class="btn btn-danger btn-lg" value="Reddet" ng-click="cevap(0)"/>
+    </div>
+    <div class="panel-footer" ng-if="istek.gorunum == 'yapan' && (istek.veri.yetki == 1 || istek.veri.yetki == 3)">
+        <input type="button" class="btn btn-danger btn-lg" value="İstekten Vazgeç" ng-click="istekten_vazgec()"/>
+    </div>
+</div>
+<div class="alert alert-warning" ng-show="istek.istekCevapDurum">
+    İsteğe cevabınız iletildi!
+</div>

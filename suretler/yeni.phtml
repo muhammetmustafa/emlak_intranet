@@ -1,0 +1,43 @@
+<div class="text-center">
+    <ul class="list-inline list-unstyled list-adim">
+        <li ui-sref-active="simdiki-adim" ui-sref="yeni.adim1" class="tamamlanmamis-adim"
+            ng-class="{'basarili-adim':adimlar[0]}">
+            1
+        </li>
+        <li ui-sref-active="simdiki-adim" ui-sref="yeni.adim2" class="tamamlanmamis-adim"
+            ng-class="{'acik-adim':adimlar[0], 'basarili-adim':adimlar[1]}">
+            2
+        </li>
+        <li ui-sref-active="simdiki-adim" ui-sref="yeni.adim3" class="tamamlanmamis-adim"
+            ng-class="{'acik-adim':adimlar[1], 'basarili-adim':adimlar[2]}">
+            3
+        </li>
+        <li ui-sref-active="simdiki-adim" ui-sref="yeni.adim4" class="tamamlanmamis-adim"
+            ng-class="{'acik-adim':adimlar[2], 'basarili-adim':adimlar[3]}">
+            4
+        </li>
+        <li ui-sref-active="simdiki-adim" ui-sref="yeni.adim5" class="tamamlanmamis-adim"
+            ng-class="{'acik-adim':adimlar[3], 'basarili-adim':adimlar[4]}">
+            5
+        </li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="col-lg-8 col-lg-push-2">
+        <div class="panel panel-default">
+            <form name="fadim" novalidate>
+                <div class="panel-body" ui-view>
+                </div>
+            </form>
+            <div class="panel-footer">
+                <div class="text-right">
+                    <input type="button" class="btn btn-success" ng-click="deneme()" value="<<< Geri"
+                           ng-hide="_state.current.url==='/adim1'"/>
+                    <input type="button" class="btn btn-success" value="İlerle >>>" ng-click="ilerle()"
+                           ng-disabled="fadim.$invalid"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

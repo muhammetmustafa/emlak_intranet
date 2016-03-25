@@ -1,0 +1,5 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^.*$ emlak.php [QSA,L]
+</IfModule>

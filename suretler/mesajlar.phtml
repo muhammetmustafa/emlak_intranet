@@ -1,0 +1,31 @@
+<div class="clearfix">
+    <h3 class="text-center">Mesajlarım <span class="label label-success">{{mesajlarim.length}}</span></h3>
+    <div class="panel panel-default asagi_itekle">
+        <div class="row panel-body">
+            <div class="col-lg-10 col-lg-push-1">
+                <div class="alert alert-warning well-lg text-center" ng-hide="mesajlarim.length">
+                    Hiç mesajınız yok!
+                </div>
+                <table class="table table-hover" ng-show="mesajlarim.length">
+                    <thead>
+                        <tr>
+                            <th class="col-lg-1"><input type="checkbox" class="checkbox checkbox-inline"/></th>
+                            <th class="col-lg-3">Gönderen</th>
+                            <th class="col-lg-4">Konu</th>
+                            <th class="col-lg-3 text-right">Tarih</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="mesaj in mesajlarim">
+                            <td><input type="checkbox" class="checkbox"/></td>
+                            <td><a ng-href="emlakcilar/{{mesaj.mesaj_gonderen_kod}}"
+                                   ng-bind="mesaj.mesaj_gonderen_ad"></a></td>
+                            <td><a ng-href="mesajlarim/{{mesaj.mesaj_kod}}"  ng-class="{okunmamis_mesaj : mesaj.durum==1}" ng-bind="mesaj.konu"></a></td>
+                            <td class="text-right" ng-bind="mesaj.tarih"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

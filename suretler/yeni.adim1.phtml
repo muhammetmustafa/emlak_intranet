@@ -1,0 +1,36 @@
+<div class="well well-sm text-center adim-baslik">Emlak Durumunu ve Türünü Girin</div>
+    <div class="text-center">
+        <select multiple="multiple" size="10" class="input input-lg select-emlak" name="emlak_durum"
+                ng-model="ilan.emlak_durum" required>
+            <?php
+                    Mysql::sql($emlaknet)->select("id, tur")->from("ilan_turleri")->calistir();
+
+            if ($emlaknet->etkilenenSatirSayisi)
+            {
+            foreach($emlaknet->sonuc(true)->alMesaj() as $sonuc)
+            {
+            echo sprintf('
+            <option value="%s">%s</option>
+            ', $sonuc["id"], $sonuc["tur"]);
+            }
+            }
+            ?>
+        </select>
+        <select multiple="multiple" size="10" class="input input-lg select-emlak saga_itekle" name="gayrimenkul"
+                ng-model="ilan.gayrimenkul" required>
+            <?php
+                    Mysql::sql($emlaknet)->select("id, tur")->from("gayrimenkuller")->calistir();
+
+            if ($emlaknet->etkilenenSatirSayisi)
+            {
+            foreach($emlaknet->sonuc(true)->alMesaj() as $sonuc)
+            {
+            echo sprintf('
+            <option value="%s">%s</option>
+            ', $sonuc["id"], $sonuc["tur"]);
+            }
+            }
+            ?>
+        </select>
+
+    </div>

@@ -1,0 +1,37 @@
+<div class="form-ilanolustur clearfix">
+    <h3 class="text-center">
+        <span ng-bind="baslik"></span>
+        <span class="label label-success saga_itekle" ng-bind="isteklerim.length" ng-show="isteklerim.length"></span>
+    </h3>
+    <div class="panel panel-default asagi_itekle">
+        <div class="panel-body">
+                <div class="alert alert-warning well-lg text-center" ng-show="isteklerim.length<=0">
+                    Hiç isteğiniz yok!
+                </div>
+                <table class="table table-hover" ng-show="isteklerim.length > 0">
+                    <thead>
+                        <tr>
+                            <th class="col-lg-1"></th>
+                            <th class="col-lg-3">İlan</th>
+                            <th class="col-lg-2" ng-bind="istek_yapan_tur"></th>
+                            <th class="col-lg-2">İstek Tarihi</th>
+                            <th class="col-lg-3">Durum</th>
+                            <th class="col-lg-1"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="istek in isteklerim">
+                            <td ng-bind-template="#{{istek.istek_kod}}"></td>
+                            <td><a ng-href="ilanlar/{{istek.ilan_id}}" ng-bind="istek.ilan"></a></td>
+                            <td><a ng-href="emlakcilar/{{istek.emlakci_id}}" ng-bind="istek.emlakci"></a></td>
+                            <td ng-bind="istek.istek_tarihi"></td>
+                            <td ng-bind="istek.durum"></td>
+                            <td class="text-right">
+                                <a ng-href="#ilanlar/{{istek.ilan_id}}/istekler/{{istek.istek_kod}}" class="label label-info">Detaylar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+    </div>
+</div>

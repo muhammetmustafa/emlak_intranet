@@ -1,0 +1,54 @@
+<div class="well well-sm text-center adim-baslik">Adres/İletişim Bilgileri</div>
+<div class="text-center form-group" ng-controller="GeoController">
+    <div class="form-inline">
+        <label class="control-label">İl:</label>
+        <select class="form-control" ng-model="ilan.il" name="il" required>
+            <option value="" selected>Seçiniz..</option>
+            <?php
+                $geo = new Mysql("geo");
+
+	            Mysql::sql($geo)
+	            ->select('id as kod,il as ad')
+	            ->from('iller')
+	            ->calistir();
+
+	            if ($geo->etkilenenSatirSayisi > 0)
+	            {
+	            	foreach ($geo->sonuc(true)->alMesaj() as $il)
+	            	{
+	            		echo sprintf('<option value="%s">%s</option>', $il["kod"], $il["ad"]);
+	            	}
+	            }
+            ?>
+        </select>
+    </div>
+    <div ng-show="ilan.il > 0" class="form-inline">
+        <label class="control-label">İlce:</label>
+        <select class="form-control" ng-model="ilan.ilce" name="ilce"
+                ng-options="ilce.kod as ilce.ad for ilce in ilceler" required>
+            <option value="" selected>Seçiniz..</option>
+            <option value="">{{ilce.ad}}</option>
+        </select>
+    </div>
+    <div ng-show="ilan.ilce > 0" class="form-inline">
+        <label class="control-label">Semt:</label>
+        <select class="form-control" ng-model="ilan.semt" name="semt"
+                ng-options="semt.kod as semt.ad for semt in semtler" required>
+            <option value="" selected>Seçiniz..</option>
+            <option value="">{{semt.ad}}</option>
+        </select>
+    </div>
+    <div ng-show="ilan.semt > 0" class="form-inline">
+        <label class="control-label">Mahalle:</label>
+        <select class="form-control" ng-model="ilan.mahalle" name="mahalle"
+                ng-options="mahalle.kod as mahalle.ad for mahalle in mahalleler" required>
+            <option value="" selected>Seçiniz..</option>
+            <option value="">{{mahalle.ad}}</option>
+        </select>
+    </div>
+    <div ng-show="ilan.mahalle > 0">
+        <label class="control-label">Adres:</label>
+        <input type="text" class="form-control" ng-minlength=10 ng-maxlength=200 name="adres" ng-model="ilan.adres"
+               required/>
+    </div>
+</div>

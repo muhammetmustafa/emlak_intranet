@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html ng-app="EmlakNET">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>emlakINTRANET - Yeni İlan Oluştur</title>
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/emlak.css"/>
+    <script src="js/angular/angular.min.js"></script>
+    <script src="js/emlak/controllers.js"></script>
+    <script src="js/jquery/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap/bootstrap.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Menü</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="home.html">
+                    <img src="img/logo/ei_logo.png" alt="Logo" class="navbar-brand"/>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <form class="navbar-form navbar-left">
+                    <input type="text" class="form-control navbar-arama" placeholder="İlan, kişi ya da haber ara.."/>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            İlanlar
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="../yeni_ilan.html">Yeni</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="yayindakiler.html">Yayındakiler</a>
+                            </li>
+                            <li>
+                                <a href="devredilenler.html">Devredilenler</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="btn">Mesajlar</a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn">Profil</a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn">Çıkış</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <div class="container asagi_itekle">
+        <div class="container-fluid">
+            <div class="form-ilanolustur clearfix">
+                <div class="panel-heading arka-baslik">
+                    <h3>Devredilen İlanlarım</h3>
+                </div>
+                <div class="panel panel-default asagi_itekle" ng-controller="ilanlariListeleController">
+                    <div class="row panel-body">
+                        <div class="col-lg-10 col-lg-push-1">
+                            <table class="table table-hover" ng-init="liste='devredilenler'">
+                                <thead>
+                                    <tr>
+                                        <th>Başlık</th>
+                                        <th>Açıklama</th>
+                                        <th>Tür</th>
+                                        <th>Fiyat</th>
+                                        <th class="col-lg-3"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="ilan in ilanlar">
+                                        <td>{{ilan.baslik}}</td>
+                                        <td>{{ilan.aciklama}}</td>
+                                        <td>{{ilan.tur}}</td>
+                                        <td>{{ilan.fiyat | currency:'TL'}}</td>
+                                        <td>
+                                            <select class="form-control">
+                                                <option value="" selected>İşlem Seç...</option>
+                                                <option value="1">Düzenle</option>
+                                                <option value="2">Sil</option>
+                                                <option value="3">Yayından Kaldır</option>
+                                                <option value="4">Devret</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer hide">
+        <div class="container text-center">
+            <div class="">2014 &copy; Muhammet Mustafa Çalışkan</div>
+        </div>
+    </div>
+</body>
+</html>

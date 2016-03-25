@@ -1,0 +1,60 @@
+<div class="clearfix">
+    <h3 class="text-center">İlanlarım <span class="label label-success">{{ilanlar.length}}</span></h3>
+    <div class="panel panel-default asagi_itekle">
+        <div class="row panel-body">
+            <div class="col-lg-10 col-lg-push-1">
+                <div class="alert alert-warning well-lg text-center" ng-hide="ilanlar.length">
+                    Hiç ilanınız yok!
+                </div>
+                <table class="table table-hover" ng-show="ilanlar.length">
+                    <thead>
+                        <tr>
+                            <th class="col-lg-4">Başlık</th>
+                            <th class="col-lg-2">Tür</th>
+                            <th class="col-lg-2 text-right">Fiyat</th>
+                            <th class="col-lg-1 text-right">Durum</th>
+                            <th class="col-lg-5 text-right"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ilan in ilanlar">
+                            <td><a ng-href="ilanlar/{{ilan.id}}">{{ilan.baslik}}</a></td>
+                            <td>{{ilan.tur}} {{ilan.gayrimenkul_turu}}</td>
+                            <td class="text-right dikey-ortala">
+                                <span class="label label-info"
+                                      title="{{ilan.fiyat | fiyatOkunusuBas | ilkHarflerBuyuk}}">{{ilan.fiyat | currency:''}} TL
+                                </span>
+                            </td>
+                            <td class="text-right">{{ilan.durum}}</td>
+                            <td class="text-right">
+                                <a class="label label-primary" ng-href="ilanlar/{{ilan.id}}/duzenle" title="Düzenle">Düzenle</a>
+                                <a class="label label-danger"
+                                   href=""
+                                   role="button"
+                                   data-target="#ilan_sil"
+                                   data-toggle="modal"
+                                   ng-click="silinecek_ilan_id_ata(ilan.id)"
+                                   title="Kaldır">Sil</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ilan_sil" role="modal" tabindex="-1">
+    <div class="modal-dialog modal-content">
+        <div class="modal-header">
+            <button class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Silme İşlemi</h3>
+        </div>
+        <div class="modal-body">
+            <p>Silmek istediğinize emin misin?</p>
+        </div>
+        <div class="modal-footer" data-dismiss="modal" aria-hidden="true">
+            <a href="" class="btn">Vazgeç</a>
+            <a href="" class="btn btn-danger" ng-click="sil()">Sil</a>
+        </div>
+    </div>
+</div>

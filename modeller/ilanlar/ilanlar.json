@@ -1,0 +1,20 @@
+{
+    "sutunlar" : {
+        "id" : "id",
+        "emlakci" : "emlakci_id",
+        "gayrimenkul_tur" : "gayrimenkul_tur_id",
+        "ilan_tur" : "ilan_tur_id",
+        "mahalle" : "mahalle_id",
+        "baslik" : "baslik",
+        "aciklama" : "aciklama",
+        "fiyat" : "fiyat",
+        "oda_turu" : "oda_turu",
+        "metrekare" : "metrekare",
+        "bulundugu_kat" : "bulundugu_kat",
+        "kac_yillik" : "kac_yillik",
+        "koordinat" : "koordinat",
+        "adres" : "adres",
+        "eklenme_tarihi" : "eklenme_tarihi",
+        "durum" : "durum_id"
+    }
+}
